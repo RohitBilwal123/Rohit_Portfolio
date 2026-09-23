@@ -1,21 +1,40 @@
-// Portfolio JavaScript
+/* ==========================================
+   ROHIT BILWAL PORTFOLIO
+   JavaScript
+========================================== */
+
 
 console.log("Rohit Portfolio Loaded Successfully");
 
 
-// Smooth navigation
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+/* ==========================================
+   SMOOTH NAVIGATION
+========================================== */
+
+document.querySelectorAll('a[href^="#"]').forEach(function (link) {
 
     link.addEventListener("click", function (event) {
 
-        event.preventDefault();
+        const targetId = this.getAttribute("href");
 
-        const target = document.querySelector(this.getAttribute("href"));
+        if (targetId === "#") {
+            return;
+        }
+
+
+        const target = document.querySelector(targetId);
+
 
         if (target) {
+
+            event.preventDefault();
+
             target.scrollIntoView({
-                behavior: "smooth"
+                behavior: "smooth",
+                block: "start"
             });
+
         }
 
     });
@@ -23,14 +42,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 
 
-// Current year in footer
-const footerText = document.querySelector("footer p");
 
-if (footerText) {
+/* ==========================================
+   CURRENT YEAR
+========================================== */
 
-    const currentYear = new Date().getFullYear();
+const copyright = document.querySelector(".copyright");
 
-    footerText.textContent =
-        `© ${currentYear} Rohit Bilwal. All Rights Reserved.`;
+
+if (copyright) {
+
+    copyright.textContent =
+        `© ${new Date().getFullYear()} Rohit Bilwal. Built with HTML, CSS & JavaScript.`;
 
 }
